@@ -77,13 +77,24 @@ function getCursorPosition(e) {
 function clicked() {
 	prevStat = this.status;
 	this.down = false;
+	
+	var random_text = new Array ();
+	random_text[0] = "You lost :(";
+	random_text[1] = "I pwned you.";
+	random_text[2] = "Yes I cheated to win, any problems?";
+	random_text[3] = "Try again next time, I promise to be fair.";
+	random_text[4] = "You just exploded an atomic bomb in your browser!!";
+	random_text[5] = "You're just a plain noob, sorry.";
+	random_text[6] = "Newsflash, you suck.";
+	var i = Math.floor(7*Math.random())
+	
     if ( x >= 0 && y >= 0 && x < this.game.board.boardSize && y < this.game.board.boardSize ) {
 		if ( this.button != "right" ) {
 			this.status = this.game.stroke(x,y);
 			if ( this.status == this.game.STATUS_LOST ) {	
 				this.explosion.play();
 				this.paint();
-				alert("You lost :(");
+				alert("random_text[i]");
 				this.reset();
 			}
 			else if ( this.status == this.game.STATUS_WON ) {
