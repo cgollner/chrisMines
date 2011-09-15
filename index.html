@@ -1,0 +1,124 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8" />
+<link rel="stylesheet" type="text/css" href="styles/chrisMines.css" /> 
+<script type="text/javascript" src="domain/Point.js"></script>
+<script type="text/javascript" src="domain/Square.js"></script>
+<script type="text/javascript" src="domain/Board.js"></script>
+<script type="text/javascript" src="domain/Game.js"></script>
+<script type="text/javascript" src="ui/BoardViewer.js"></script>
+<script type="text/javascript" src="ui/Framework.js"></script>
+<script type="text/javascript" src="jquery/jquery.js"></script>
+<script type="text/javascript" src="jquery/jquery.rightClick.js"></script>
+<script type="text/javascript" src="ajax/ajaxFunctions.js"></script>
+<script type="text/javascript">
+function getQueryParams(qs) {
+    qs = qs.split("+").join(" ");
+    var params = {},
+        tokens,
+        re = /[?&]?([^=]+)=([^&]*)/g;
+
+    while (tokens = re.exec(qs)) {
+        params[decodeURIComponent(tokens[1])]
+            = decodeURIComponent(tokens[2]);
+    }
+
+    return params;
+}
+var $_GET = getQueryParams(document.location.search);
+var $bs,$br;
+var $fit = screen.availHeight-340;
+if ( $_GET['bs'] != undefined ) {
+	$bs = $_GET['bs'];
+}
+else {
+	$bs = 8;
+}
+if ( $_GET['br'] != undefined ) {
+	$br = $_GET['br'];
+}
+else {
+	$br = $fit;
+}
+</script>
+<title>ChrisMines</title> 
+<script type="text/javascript"> 
+ 
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-24916456-1']);
+  _gaq.push(['_trackPageview']);
+ 
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+ 
+</script> 
+</head>
+<body onload="getAllScores($bs)">
+<div class="top">
+<img class="floatLeft" src="data/chrisMines-logo.png" width="200" height="100" alt="chrisMines-logo">
+<div class="scores"><b>Top 10 scores for board size <script type="text/javascript">document.write($bs);</script> </b><br><br>
+<span id="scores"></span></div>
+<div class="scores"><b>Latest scores for board size <script type="text/javascript">document.write($bs);</script> </b><br><br>
+<span id="latestScores"></span></div>
+<div class="scores">
+<form action="index.html" method="get">
+<label>Board size:</label><select name="bs">
+<script type="text/javascript">
+var i;
+for ( i = 3; i <= 50; i++ ) {
+	document.write('<option ' + (i == $bs ? 'selected="selected"':'') + 'value="'+i+'">'+i+'</option>');
+}
+</script>
+</select><br>
+<label>Board resolution:</label><select name="br">
+<script type="text/javascript">
+var arr = new Array($fit,320,480,560,640,800,1024,1200,1400,1600,1800,2000);
+var i;
+	document.write('<option ' + ($fit == $br ? 'selected="selected"':'') + 'value="'+$fit+'">Fit to screen</option>');
+
+for ( i = 1; i < arr.length; i++  ) {
+	document.write('<option ' + (arr[i] == $br ? 'selected="selected"':'') + 'value="'+arr[i]+'">'+arr[i]+'</option>');
+}
+</script>
+</select><br><br>
+<label></label><input type="submit" value="Start new game!">
+</form>
+</div>
+<div class="stats">Time passed: <span id="time">10</span><br>Flags used: <span id="flags">10/10</span></div>
+</div>
+
+</div> 
+<div class="canvas"><hr>
+<canvas width="$br" height="$br" id="chrisMines">your browser does not support the canvas tag </canvas>
+<script type="text/javascript">
+fw = new Framework($bs,$br);
+$(document).ready( function() {				
+	$("#chrisMines").rightMouseUp( function(e) {
+		fw.button = "right";
+		mouseClicked(e);
+		fw.button = "left";
+	});				
+});
+</script>
+</div><div class="canvas"><hr>
+
+<div id="fb-root"></div><script src="http://connect.facebook.net/en_US/all.js#appId=224157354297318&amp;xfbml=1"></script><fb:like href="http://www.chrismines.cgollner.x10.mx" send="false" layout="button_count" width="0" show_faces="false" colorscheme="light" font=""></fb:like>
+
+<g:plusone size="medium" href="http://www.chrismines.cgollner.x10.mx"></g:plusone>
+<script type="text/javascript"> 
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script> 
+
+<a href="http://twitter.com/share" class="twitter-share-button" data-url="http://www.chrismines.cgollner.x10.mx" data-text="ChrisMines" data-count="horizontal" data-via="goellner88">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+<br>
+<small><a href="http://www.cgollner.x10.mx/">&copy; Christian G&ouml;llner</a></small><hr></div>
+</body>
+</html>
