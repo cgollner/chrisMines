@@ -34,25 +34,25 @@ function BoardViewer(board,w,s,ctx) {
 	this.mine = new Image();
 	this.mine.onload = function () {
 		mineReady = true;
-	}	
+	};
 	this.mine.src="data/mine.png";
 
 	this.brokenMine = new Image();
 	this.brokenMine.onload = function () {
 		brokenMineReady = true;
-	}	
+	};
 	this.brokenMine.src="data/brokenMine.png";
 	
 	this.flag = new Image();
 	this.flag.onload = function () {
 		flagReady = true;
-	}	
+	};
 	this.flag.src="data/flag.png";
 	
 	this.crossedFlag = new Image();
 	this.crossedFlag.onload = function () {
 		crossedFlagReady = true;
-	}	
+	};	
 	this.crossedFlag.src="data/crossedFlag.png";
 	
 	this.numbers = new Array(8);
@@ -60,49 +60,49 @@ function BoardViewer(board,w,s,ctx) {
 	this.numbers[0] = new Image();
 	this.numbers[0].onload = function() {
 		numberReady[0] = true;
-	}
+	};
 	this.numbers[0].src = "data/1.png";
 
 	this.numbers[1] = new Image();
 	this.numbers[1].onload = function() {
 		numberReady[1] = true;
-	}
+	};
 	this.numbers[1].src = "data/2.png";
 
 	this.numbers[2] = new Image();
 	this.numbers[2].onload = function() {
 		numberReady[2] = true;
-	}
+	};
 	this.numbers[2].src = "data/3.png";
 
 	this.numbers[3] = new Image();
 	this.numbers[3].onload = function() {
 		numberReady[3] = true;
-	}
+	};
 	this.numbers[3].src = "data/4.png";
 
 	this.numbers[4] = new Image();
 	this.numbers[4].onload = function() {
 		numberReady[4] = true;
-	}
+	};
 	this.numbers[4].src = "data/5.png";
 
 	this.numbers[5] = new Image();
 	this.numbers[5].onload = function() {
 		numberReady[5] = true;
-	}
+	};
 	this.numbers[5].src = "data/6.png";
 
 	this.numbers[6] = new Image();
 	this.numbers[6].onload = function() {
 		numberReady[6] = true;
-	}
+	};
 	this.numbers[6].src = "data/7.png";
 
 	this.numbers[7] = new Image();
 	this.numbers[7].onload = function() {
 		numberReady[7] = true;
-	}
+	};
 	this.numbers[7].src = "data/8.png";
 }
 

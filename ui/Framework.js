@@ -23,7 +23,7 @@ function Framework(size,res) {
 	document.addEventListener("mousedown",mouseDown,false);
 	this.explosion = document.createElement('audio');
 	if ( "" != this.explosion.canPlayType('audio/wav')) {
-        this.explosion.setAttribute('src','data/explosion.wav')
+        this.explosion.setAttribute('src','data/explosion.wav');
     }
 	else if ( "" != this.explosion.canPlayType('audio/mp3')) {
 		this.explosion.setAttribute('src','data/explosion.mp3');
