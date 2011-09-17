@@ -3,6 +3,7 @@ var y = -1;
 var timePassed = 0.0;
 var timesPlayed = 0;
 var timeCount = false;
+var started = -1;
 
 function incTime() {
 	if ( timeCount ) {
@@ -24,7 +25,6 @@ function Framework(size,res) {
 	this.ctx.fillText("Loading board...", 200,200);	
 	this.game = new Game(this.size);
 	this.status = this.game.STATUS_STANDBY;
-	this.started = -1;
 	this.bv = new BoardViewer(this.game.getBoard(),this.res,this.res,this.ctx);
 	this.reset = reset;
 	this.paint = paint;
@@ -48,7 +48,7 @@ function Framework(size,res) {
 
 function reset() {
 	this.status = this.game.STATUS_STANDBY;
-	this.started = -1;
+	started = -1;
 	timeCount = false;
 	timePassed = 0.000;
 	this.game = new Game(this.size);
@@ -120,7 +120,7 @@ function clicked() {
 			}
 			else if ( this.status == this.game.STATUS_WON ) {
 				this.paint();
-				if ( this.started < 0 ) {
+				if ( started < 0 ) {
 					alert("You were too lucky! This score doesn't count :)");
 				}
 				else {
