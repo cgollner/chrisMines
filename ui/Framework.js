@@ -6,7 +6,7 @@ var timeCount = false;
 
 function incTime() {
 	if ( timeCount ) {
-		timePassed += 0.001;
+		timePassed = (new Date().getTime()-started)/1000.0;
 		document.getElementById("timeStats").innerHTML = "Time: " + timePassed.toFixed(3);
 	}
 }
@@ -133,7 +133,7 @@ function clicked() {
 				this.reset();
 			}
 			else if ( prevStat == this.game.STATUS_STANDBY && this.status == this.game.STATUS_RUNNING ) {
-				started = 1;
+				started = new Date().getTime();
 				timePassed = 0.0;
 				timeCount = true;
 			}
