@@ -57,3 +57,9 @@ div.canvas {
   float:left;
   text-align:center;
 }
+
+#timeStats, #flagStats {
+	font-family: Arial Black, Gadget, sans-serif;
+ 	text-align:center;
+ 	padding:50px;
+ }

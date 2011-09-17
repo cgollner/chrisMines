@@ -1,12 +1,22 @@
 var x = -1;
 var y = -1;
+var timePassed = 0.0;
 var timesPlayed = 0;
+var timeCount = false;
+
+function incTime() {
+	if ( timeCount ) {
+		timePassed += 0.001;
+		document.getElementById("timeStats").innerHTML = "Time: " + timePassed.toFixed(3);
+	}
+}
 
 function Framework(size,res) {
 	this.size = size;
 	this.res  = res;
 	this.canvas = document.getElementById("chrisMines");
 	this.ctx    = this.canvas.getContext("2d");
+	
 	this.down = false;
 	this.canvas.width = this.res;
 	this.canvas.height=this.res;
@@ -32,13 +42,19 @@ function Framework(size,res) {
 	this.clicked = clicked;
 	this.getCursorPosition = getCursorPosition;
 	this.paint();
+	setInterval(incTime, 1);
+	document.getElementById("flagStats").innerHTML = "Flags: " + this.game.getBoard().getnFlagsUsed() + "/" + this.game.getBoard().getnMines();
 }
 
 function reset() {
 	this.status = this.game.STATUS_STANDBY;
 	this.started = -1;
+	timeCount = false;
+	timePassed = 0.000;
 	this.game = new Game(this.size);
 	this.bv.setBoard(this.game.getBoard());
+	document.getElementById("flagStats").innerHTML = "Flags: " + this.game.getBoard().getnFlagsUsed() + "/" + this.game.getBoard().getnMines();
+	document.getElementById("timeStats").innerHTML = "Time: 0.000";
 }
 
 function paint() {
@@ -95,7 +111,8 @@ function clicked() {
     if ( x >= 0 && y >= 0 && x < this.game.board.boardSize && y < this.game.board.boardSize ) {
 		if ( this.button != "right" ) {
 			this.status = this.game.stroke(x,y);
-			if ( this.status == this.game.STATUS_LOST ) {	
+			if ( this.status == this.game.STATUS_LOST ) {
+				timeCount = false;
 				this.explosion.play();
 				this.paint();
 				alert(getRandomMessage());
@@ -107,22 +124,23 @@ function clicked() {
 					alert("You were too lucky! This score doesn't count :)");
 				}
 				else {
-					var d=new Date();			
-					var now = (d.getTime()-this.started)/1000.0;
-					var player=prompt("You won the game in " + now + " seconds! :)\nPlease insert your name!");
+					timeCount = false;
+					var player=prompt("You won the game in " + timePassed.toFixed(3) + " seconds! :)\nPlease insert your name!");
 					if (player!=null && player!="") {
-						sendScore(player,now,this.size);
+						sendScore(player,timePassed.toFixed(3),this.size);
 	  				}
 				}
 				this.reset();
 			}
 			else if ( prevStat == this.game.STATUS_STANDBY && this.status == this.game.STATUS_RUNNING ) {
-				var d=new Date();			
-				this.started = d.getTime();
+				started = 1;
+				timePassed = 0.0;
+				timeCount = true;
 			}
 		}
 		else {
 			this.game.flag(x, y);
+			document.getElementById("flagStats").innerHTML = "Flags: " + this.game.getBoard().getnFlagsUsed() + "/" + this.game.getBoard().getnMines();
 		}
 	}
 	this.paint();	
