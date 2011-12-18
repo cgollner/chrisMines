@@ -73,13 +73,13 @@ function init(x,y) {
 }
 
 function assignMines( x, y ){
-	nMinesAssigned = 0;
+	var nMinesAssigned = 0;
 	while ( nMinesAssigned < this.nMines ) {
-		i = Math.floor(Math.random()*this.boardSize);
-		j = Math.floor(Math.random()*this.boardSize);
+		var i = Math.floor(Math.random()*this.boardSize);
+		var j = Math.floor(Math.random()*this.boardSize);
 		if ( !this.squares[i][j].getIsMine() && i != y && j != x ) {
-			res = Math.floor(Math.random()*2);
-			if ( res == 0  ) {
+			var res = Math.floor(Math.random()*2);
+			if ( res === 0  ) {
 				this.squares[i][j].setMine(true);
 				nMinesAssigned++;
 			}
@@ -105,10 +105,10 @@ function discoverAllAround(x,y) {
 	}
 
 	var a;
-	if ( this.squares[y][x].getnMinesAround() == 0 ) {
+	if ( this.squares[y][x].getnMinesAround() === 0 ) {
 		for ( a = 0; a < 8; a++ ) {
-			nx = x + this.adjacents[a].x;
-			ny = y + this.adjacents[a].y;
+			var nx = x + this.adjacents[a].x;
+			var ny = y + this.adjacents[a].y;
 			if ( nx >= 0 && ny >= 0 && nx < this.boardSize && ny < this.boardSize ) {
 				if ( !this.squares[ny][nx].getIsDiscovered() ) {
 					this.discoverAllAround(nx,ny);
@@ -120,7 +120,7 @@ function discoverAllAround(x,y) {
 
 function setSquareDiscovered(x,y) {
 	if ( !this.squares[y][x].getIsDiscovered() ) {
-		if ( this.squares[y][x].getnMinesAround() == 0 && !this.squares[y][x].getIsMine() ) {
+		if ( this.squares[y][x].getnMinesAround() === 0 && !this.squares[y][x].getIsMine() ) {
 			this.discoverAllAround(x,y);
 		}
 		else {
@@ -150,15 +150,15 @@ function getSquareIsFlaged(x,y) {
 }
 
 function getCountingMatrix() {
-	matrix = new Array(this.boardSize);
+	var matrix = new Array(this.boardSize);
 	var i,j,a;
 	for ( i = 0; i < this.boardSize; i++ ) {
 		matrix[i] = new Array(this.boardSize);
 		for ( j = 0; j < this.boardSize; j++ ) {
 			matrix[i][j] = 0;
 			for ( a = 0; a < 8; a++ ) {
-				x = j + this.adjacents[a].x;
-				y = i + this.adjacents[a].y;
+				var x = j + this.adjacents[a].x;
+				var y = i + this.adjacents[a].y;
 
 				if ( x >= 0 && y >= 0 && x < this.boardSize && y < this.boardSize ) {
 					if ( this.squares[y][x].getIsMine() ) {

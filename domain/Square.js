@@ -1,18 +1,18 @@
-﻿
+
 function Square () {
-	this.isMine 		= false;
-	this.isFlaged 		= false;
-	this.isDiscovered 	= false;
-	this.nMinesAround 	= 0;
+	this.isMine         = false;
+	this.isFlaged       = false;
+	this.isDiscovered   = false;
+	this.nMinesAround   = 0;
 	
-	this.getIsMine 		 = getIsMine;
-	this.setMine 		 = setMine;
-	this.getIsDiscovered = getIsDiscovered;
-	this.setDiscovered   = setDiscovered;
-	this.getIsFlaged 	 = getIsFlaged;
-	this.setFlaged 		 = setFlaged;
-	this.getnMinesAround = getnMinesAround;
-	this.setnMinesAround = setnMinesAround;
+	this.getIsMine 	        = getIsMine;
+	this.setMine 		    = setMine;
+	this.getIsDiscovered    = getIsDiscovered;
+	this.setDiscovered      = setDiscovered;
+	this.getIsFlaged 	    = getIsFlaged;
+	this.setFlaged 		    = setFlaged;
+	this.getnMinesAround    = getnMinesAround;
+	this.setnMinesAround    = setnMinesAround;
 }
 
 function getIsMine() {

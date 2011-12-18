@@ -5,6 +5,10 @@ var flagReady = false;
 var crossedFlagReady = false;
 var numberReady = new Array(false,false,false,false,false,false,false,false);
 
+/**
+ * BoardViewer
+ * 
+ */
 function BoardViewer(board,w,s,ctx) {
 	this.FILL       = "rgb(185,185,185)";
 	this.DISCOVERED = "rgb(230,230,230)";

@@ -3,7 +3,7 @@ function getXmlHttpObject() {
 	var xmlhttp;
 
 	if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
-  		xmlhttp=new XMLHttpRequest();
+  		xmlhttp = new XMLHttpRequest();
   	}
 	else {// code for IE6, IE5
 		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
@@ -17,14 +17,14 @@ function getScores(size,order) {
 	xmlhttp.onreadystatechange=function() {
 
 		if (xmlhttp.readyState < 4 ) {
-			document.getElementById((order == true?"latestScores":"scores")).innerHTML='Loading scores <img src="data/load2.gif">';
+			document.getElementById((order === true?"latestScores":"scores")).innerHTML='Loading scores <img src="data/load2.gif">';
 		}
 		else if (xmlhttp.readyState==4 && xmlhttp.status==200) {
-			document.getElementById((order == true?"latestScores":"scores")).innerHTML=xmlhttp.responseText;
+			document.getElementById((order === true?"latestScores":"scores")).innerHTML=xmlhttp.responseText;
 		}
 	};
 	
-	xmlhttp.open("GET","http://www.chrismines.cgollner.x10.mx/html5/scoreScripts/getScores.php?size="+size+(order == true ?"&order=true":""),true);
+	xmlhttp.open("GET","http://www.chrismines.cgollner.x10.mx/html5/scoreScripts/getScores.php?size="+size+(order === true ?"&order=true":""),true);
 	xmlhttp.send();
 }
 
