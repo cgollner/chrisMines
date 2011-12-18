@@ -12,12 +12,14 @@ function incTime() {
 	}
 }
 
+/**
+ * Just Testing this shit
+ */
 function Framework(size,res) {
 	this.size = size;
 	this.res  = res;
 	this.canvas = document.getElementById("chrisMines");
 	this.ctx    = this.canvas.getContext("2d");
-	
 	this.down = false;
 	this.canvas.width = this.res;
 	this.canvas.height=this.res;

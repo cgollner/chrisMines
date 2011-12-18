@@ -1,4 +1,7 @@
 
+/**
+ * Testing Eclipse again.
+ */
 function getXmlHttpObject() {
 	var xmlhttp;
 
