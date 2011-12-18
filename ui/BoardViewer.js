@@ -9,7 +9,7 @@ var numberReady = new Array(false,false,false,false,false,false,false,false);
  * BoardViewer
  * 
  */
-function BoardViewer(board,w,s,ctx) {
+function BoardViewer(board,w,ctx) {
 	this.FILL       = "rgb(185,185,185)";
 	this.DISCOVERED = "rgb(230,230,230)";
 	this.TOP        = "rgb(232,232,232)";

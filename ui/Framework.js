@@ -1,7 +1,7 @@
 var x = -1;
 var y = -1;
 var timePassed = 0.0;
-var timesPlayed = 0;
+//var timesPlayed = 0;
 var timeCount = false;
 var started = -1;
 
@@ -12,9 +12,6 @@ function incTime() {
 	}
 }
 
-/**
- * Just Testing this shit
- */
 function Framework(size,res) {
 	this.size = size;
 	this.res  = res;
@@ -27,17 +24,17 @@ function Framework(size,res) {
 	this.ctx.fillText("Loading board...", 200,200);	
 	this.game = new Game(this.size);
 	this.status = this.game.STATUS_STANDBY;
-	this.bv = new BoardViewer(this.game.getBoard(),this.res,this.res,this.ctx);
+	this.bv = new BoardViewer(this.game.getBoard(),this.res,this.ctx);
 	this.reset = reset;
 	this.paint = paint;
 	this.canvas.addEventListener("mousemove",mouseMove,false);
 	document.addEventListener("mouseup",mouseUp,false);
 	document.addEventListener("mousedown",mouseDown,false);
 	this.explosion = document.createElement('audio');
-	if ( "" != this.explosion.canPlayType('audio/wav')) {
+	if ( "" !== this.explosion.canPlayType('audio/wav')) {
         this.explosion.setAttribute('src','data/explosion.wav');
     }
-	else if ( "" != this.explosion.canPlayType('audio/mp3')) {
+	else if ( "" !== this.explosion.canPlayType('audio/mp3')) {
 		this.explosion.setAttribute('src','data/explosion.mp3');
 	}
 	this.explosion.load();
@@ -60,7 +57,7 @@ function reset() {
 }
 
 function paint() {
-	if ( this.down == true ) {
+	if ( this.down === true ) {
 		this.bv.drawBoard(false,true,x,y);
 	}
 	else if ( this.status == this.game.STATUS_LOST ) {
@@ -72,17 +69,17 @@ function paint() {
 }
 
 function getCursorPosition(e) {
-	canvas = document.getElementById("chrisMines");
+	var canvas = document.getElementById("chrisMines");
     var tmpX;
     var tmpY;
-    if (e.pageX != undefined && e.pageY != undefined) {
-	tmpX = e.pageX;
-	tmpY = e.pageY;
+    if (e.pageX && e.pageY ) {
+        tmpX = e.pageX;
+        tmpY = e.pageY;
     }
     else {
-	tmpX = e.clientX + document.body.scrollLeft +
+	    tmpX = e.clientX + document.body.scrollLeft +
             document.documentElement.scrollLeft;
-	tmpY = e.clientY + document.body.scrollTop +
+	    tmpY = e.clientY + document.body.scrollTop +
             document.documentElement.scrollTop;
     }
     tmpX -= canvas.offsetLeft;
@@ -107,7 +104,7 @@ function getRandomMessage() {
 }
 
 function clicked() {
-	prevStat = this.status;
+	var prevStat = this.status;
 	this.down = false;
 	
     if ( x >= 0 && y >= 0 && x < this.game.board.boardSize && y < this.game.board.boardSize ) {
@@ -128,9 +125,9 @@ function clicked() {
 				else {
 					timeCount = false;
 					var player=prompt("You won the game in " + timePassed.toFixed(3) + " seconds! :)\nPlease insert your name!");
-					if (player!=null && player!="") {
-						sendScore(player,timePassed.toFixed(3),this.size);
-	  				}
+					if (player && player!== "") {
+					    sendScore(player,timePassed.toFixed(3),this.size);
+                    }
 				}
 				this.reset();
 			}
@@ -159,7 +156,7 @@ function mouseUp(ev) {
 	mouseClicked(ev);
 }
 
-function mouseOut(ev) {
+function mouseOut() {
 	fw.down = false;
 	fw.paint();
 }
