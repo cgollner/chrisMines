@@ -5,8 +5,8 @@ function Game(boardSize) {
 	this.STATUS_WON     = 2;
 	this.STATUS_STANDBY = 3;
 	
-	this.board  	= new Board(boardSize);
-	this.status 	= this.STATUS_STANDBY;
+	this.board  = new Board(boardSize);
+	this.status = this.STATUS_STANDBY;
 	this.lastStroke = new Point(-1,-1);
 	
 	this.stroke = stroke;
